@@ -7,35 +7,35 @@ Description = "Menu"
 function GetEntries()
 	return {
 		{
-			Text = "Update",
+			Text = "Aggiorna",
 			Icon = "",
 			Actions = {
 				["update"] = "ghostty --class=local.floating -e update-perform",
 			},
 		},
 		{
-			Text = "Install package",
+			Text = "Installa Pachetto",
 			Icon = "󰣇",
 			Actions = {
 				["manage-pkg"] = "ghostty --class=local.floating -e pkg-install",
 			},
 		},
 		{
-			Text = "Remove package",
+			Text = "Rimuovi Pachetto",
 			Icon = "󰭌",
 			Actions = {
 				["manage-pkg"] = "ghostty --class=local.floating -e pkg-remove",
 			},
 		},
 		{
-			Text = "Change themes",
+			Text = "Cambia Tema",
 			Icon = "󰸌",
 			Actions = {
 				["change-themes"] = "walker -t menus -m menus:themes",
 			},
 		},
 		{
-			Text = "Capture",
+			Text = "Cattura",
 			Icon = "",
 			Actions = {
 				["capture"] = "walker -t menus -m menus:capture",
@@ -63,7 +63,7 @@ function GetEntries()
 			},
 		},
 		{
-			Text = "System",
+			Text = "Sistema",
 			Icon = "󰐥",
 			Actions = {
 				["system"] = "walker -t menus -m menus:system",

@@ -3,8 +3,8 @@ gnome-keyring
 polkit-gnome
 
 # Browser
-helium-browser-bin
-zen-browser-bin
+brave-bin
+
 
 # Development
 git
