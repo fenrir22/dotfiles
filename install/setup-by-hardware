@@ -9,6 +9,32 @@ DOTFILES_DIR="$HOME/.local/share/dotfiles"
 HYPRLAND_CONF="$HOME/.config/hypr/hyprland.conf"
 
 log_info "Configuring hardware-specific settings..."
+log_info "Applying system power key configuration..."
+
+LOGIND_CONF="/etc/systemd/logind.conf"
+
+modify_powerkey() {
+    # Backup con sudo
+    sudo cp "$LOGIND_CONF" "$LOGIND_CONF.bak"
+    log_detail "Backup created at $LOGIND_CONF.bak"
+
+    # Scommenta e imposta ignore sulla riga esistente
+    sudo sed -i 's/^\s*#\s*HandlePowerKey=.*/HandlePowerKey=ignore/' "$LOGIND_CONF"
+    log_success "Set HandlePowerKey to ignore (uncommented default line)"
+
+    # Riavvia logind
+    sudo systemctl restart systemd-logind
+    log_success "systemd-logind restarted"
+}
+
+# Se non hai i permessi di root
+if [[ $EUID -ne 0 ]]; then
+    log_detail "Root privileges required — requesting sudo..."
+    modify_powerkey
+else
+    modify_powerkey
+fi
+
 
 # Determine which environment and keybindings to use
 if has_nvidia_gpu; then
